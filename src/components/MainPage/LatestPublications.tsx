@@ -1,8 +1,18 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styled from "styled-components";
-import LeftMenu from "../LeftMenu/LeftMenu";
-import { TopBar } from "../TopBar/TopBar";
-import { MainColor } from "../../utils/colors";
+
+import { IState } from '../../reducers';
+import { IUsersReducer } from '../../reducers/usersReducers';
+import { getUsers } from '../../actions/usersActions';
+import { getImg} from '../../actions/imagesActions';
+import { getPost} from '../../actions/postsActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { IImageReducer } from '../../reducers/imageReducers';
+import { IPostsReducer } from '../../reducers/postsReducers';
+
+type GetImg = ReturnType<typeof getImg>
+type GetUsers = ReturnType<typeof getUsers>
+type GetPosts = ReturnType<typeof getPost>
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -116,10 +126,30 @@ const PublicationBigImageInformation = styled.div`
 `;
 
 const LatestPublications: FC = () => {
+  const {usersList } = useSelector<IState, IUsersReducer>(state => ({
+    ...state.users
+}));
+
+const {imageList} = useSelector<IState, IImageReducer>(state =>({
+    ...state.photos
+}))
+
+const {postsList} = useSelector<IState, IPostsReducer>(state =>({
+    ...state.posts
+}))
+
+const dispatch = useDispatch();
+
+useEffect(() => {
+    dispatch<GetImg>(getImg());
+    dispatch<GetUsers>(getUsers());
+    dispatch<GetPosts>(getPost());
+}, [dispatch]);
+
   return (
     <Wrapper>
       <Wrapperflex>
-        <PublicationBigImage src="https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/cg/wiezowce-w-polsce.jpeg" />
+        <PublicationBigImage src={imageList[0]?.url} />
         <PublicationBigImageInformation>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
           laborum cumque dolorem, animi incidunt fuga quas saepe.
@@ -130,58 +160,48 @@ const LatestPublications: FC = () => {
 
           <Publications>
             <Publication>
-              <PublicationImage src="https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/cg/wiezowce-w-polsce.jpeg" />
+            <PublicationImage src={imageList[5]?.url} />
               <PublicationsRight>
                 <PublicationsAbout>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  pretium id nunc sit amet varius. Sed pretium id nunc sit amet
-                  varius.
-                </PublicationsAbout>
+                {postsList[0]?.title.charAt(0).toUpperCase()+postsList[0]?.title.slice(1)}                </PublicationsAbout>
                 <PublicationsInformation>
                   <PublicationsInformationDate>
                     7 jan. 2020
                   </PublicationsInformationDate>
-                  <PublicationsInformationImage src="https://i.pinimg.com/236x/47/8b/db/478bdb697c39b3047817a0687b73d5d2--corporate-portrait-business-portrait.jpg" />
+                  <PublicationsInformationImage src={imageList[0]?.url} />
                   <PublicationsInformationName>
-                    John Doe
+                  {usersList[0]?.name}
                   </PublicationsInformationName>
                 </PublicationsInformation>
               </PublicationsRight>
             </Publication>
             <Publication>
-              <PublicationImage src="https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/cg/wiezowce-w-polsce.jpeg" />
+            <PublicationImage src={imageList[4]?.url} />
               <PublicationsRight>
                 <PublicationsAbout>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  pretium id nunc sit amet varius. Sed pretium id nunc sit amet
-                  varius.
-                </PublicationsAbout>
+                {postsList[1]?.title.charAt(0).toUpperCase()+postsList[0]?.title.slice(1)}                </PublicationsAbout>
                 <PublicationsInformation>
                   <PublicationsInformationDate>
                     7 jan. 2020
                   </PublicationsInformationDate>
-                  <PublicationsInformationImage src="https://i.pinimg.com/236x/47/8b/db/478bdb697c39b3047817a0687b73d5d2--corporate-portrait-business-portrait.jpg" />
-                  <PublicationsInformationName>
-                    John Doe
+                  <PublicationsInformationImage src={imageList[0]?.url} />                  <PublicationsInformationName>
+                  {usersList[0]?.name}
                   </PublicationsInformationName>
                 </PublicationsInformation>
               </PublicationsRight>
             </Publication>
             <Publication>
-              <PublicationImage src="https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/cg/wiezowce-w-polsce.jpeg" />
+              <PublicationImage src={imageList[3]?.url} />
               <PublicationsRight>
                 <PublicationsAbout>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  pretium id nunc sit amet varius. Sed pretium id nunc sit amet
-                  varius.
+                {postsList[2]?.title.charAt(0).toUpperCase()+postsList[0]?.title.slice(1)}
                 </PublicationsAbout>
                 <PublicationsInformation>
                   <PublicationsInformationDate>
                     7 jan. 2020
                   </PublicationsInformationDate>
-                  <PublicationsInformationImage src="https://i.pinimg.com/236x/47/8b/db/478bdb697c39b3047817a0687b73d5d2--corporate-portrait-business-portrait.jpg" />
-                  <PublicationsInformationName>
-                    John Doe
+                  <PublicationsInformationImage src={imageList[0]?.url} />                  <PublicationsInformationName>
+                    {usersList[0]?.name}
                   </PublicationsInformationName>
                 </PublicationsInformation>
               </PublicationsRight>

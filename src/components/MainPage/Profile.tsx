@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ProfileSection from "../Profile/ProfileSetion";
 import Expertise from "../Profile/Expertise";
+import PanelInformation from "../Profile/PanelInformation";
 
 const Wrapper = styled.div`
   color: black;
@@ -21,6 +22,10 @@ const Profile: FC = () => {
   return (
     <Wrapper>
       <ProfileSection />
+      <Line />
+      <Expertise />
+      <Line />
+      <PanelInformation />
       <Line />
     </Wrapper>
   );

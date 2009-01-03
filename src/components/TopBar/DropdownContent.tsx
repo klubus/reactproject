@@ -35,9 +35,28 @@ const LabelWrapper = styled.div`
   }
 `;
 
+const LabelWrapper2 = styled.div`
+  width: 100%;
+  height: 120%;
+  display: flex;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 15px;
+  &:hover {
+    background-color: #7ca8bd;
+    border-radius: 3px;
+  }
+`;
+
 const LabelIcon = styled.img`
   margin-right: 12px;
   width: 12%;
+`;
+
+const LabelIcon2 = styled.img`
+  margin-right: 12px;
+  width: 12%;
+  border-radius: 50%;
 `;
 
 const LabelText = styled.div``;
@@ -153,10 +172,11 @@ export const DropdownContent = ({
       </NavigationWrapper>
       <AccountDiv>
         <Title>Account</Title>
-        <LabelWrapper>
-          <LabelIcon src="./icons/icons/house.svg" />
+        <LabelWrapper2>
+          <LabelIcon2 src="https://i.pinimg.com/236x/47/8b/db/478bdb697c39b3047817a0687b73d5d2--corporate-portrait-business-portrait.jpg" />
           <LabelText>See profile</LabelText>
-        </LabelWrapper>
+          <LabelText>See profile</LabelText>
+        </LabelWrapper2>
         <LabelWrapper>
           <LabelIcon src="./icons/icons/publications.png" />
           <LabelText>Privacy</LabelText>

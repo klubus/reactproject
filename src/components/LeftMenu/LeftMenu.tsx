@@ -1,8 +1,21 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styled from "styled-components";
 import administration from "../../icons/icons/administration.svg";
 import { MainColor } from "../../utils/colors";
 import { Link } from "react-router-dom";
+import { IState } from '../../reducers';
+import { IUsersReducer } from '../../reducers/usersReducers';
+import { getUsers } from '../../actions/usersActions';
+import { getImg} from '../../actions/imagesActions';
+import { getPost} from '../../actions/postsActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { IImageReducer } from '../../reducers/imageReducers';
+import { IPostsReducer } from '../../reducers/postsReducers';
+
+type GetImg = ReturnType<typeof getImg>
+type GetUsers = ReturnType<typeof getUsers>
+type GetPosts = ReturnType<typeof getPost>
+
 const Wrapper = styled.div`
   width: 25%;
   display: flex;
@@ -137,6 +150,26 @@ const UserTextPublicationsName = styled.a`
 `;
 
 const LeftMenu: FC = () => {
+    const {usersList } = useSelector<IState, IUsersReducer>(state => ({
+      ...state.users
+  }));
+  
+  const {imageList} = useSelector<IState, IImageReducer>(state =>({
+      ...state.photos
+  }))
+  
+  const {postsList} = useSelector<IState, IPostsReducer>(state =>({
+      ...state.posts
+  }))
+  
+  const dispatch = useDispatch();
+  
+  useEffect(() => {
+      dispatch<GetImg>(getImg());
+      dispatch<GetUsers>(getUsers());
+      dispatch<GetPosts>(getPost());
+  }, [dispatch]);
+
   return (
     <Wrapper>
       <UserInformation>
@@ -144,8 +177,9 @@ const LeftMenu: FC = () => {
           <UserInformationDetailsContainer>
             <Link to="/profile">
               <FlexPhoto>
-                <UserInformationDetailsPhoto src="https://i.pinimg.com/236x/47/8b/db/478bdb697c39b3047817a0687b73d5d2--corporate-portrait-business-portrait.jpg" />
-                <UserInformationName>Humberta Swift</UserInformationName>
+                <UserInformationDetailsPhoto src={imageList[0]?.url} />
+                <UserInformationName>                  {usersList[0]?.name}
+</UserInformationName>
               </FlexPhoto>
             </Link>
 

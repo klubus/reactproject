@@ -15,9 +15,13 @@ export interface IWorkList {
 }
 
 const workListMocked: IWorkList[] = [
-  { name: "Contract 222" },
-  { name: "Contract 333" },
-  { name: "Contract 444" },
+  { name: "Id labore ex et quam laborum" },
+  { name: "Quo vero reiciendis velit similique earum" },
+  { name: "Odio adipisci rerum aut animi" },
+  { name: "Id labore ex et quam laborum" },
+  { name: "Quo vero reiciendis velit similique earum" },
+  { name: "Odio adipisci rerum aut animi" },
+
 ];
 
 const ResumeWork = () => {
