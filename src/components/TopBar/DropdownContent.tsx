@@ -27,6 +27,12 @@ const LabelWrapper = styled.div`
   margin-bottom: 10px;
   margin-left: 5px;
   margin-right: 15px;
+  &:hover {
+    background-color: #7ca8bd;
+    width: 80%;
+    border-radius: 3px;
+    height: 110%;
+  }
 `;
 
 const LabelIcon = styled.img`
@@ -42,6 +48,9 @@ const Input = styled.input`
 
 const InputWrapper = styled.div`
   padding: 5px 17px 5px 10px;
+  &:hover {
+    background-color: #7ca8bd;
+  }
 `;
 
 const AccountDiv = styled.div`
@@ -55,6 +64,12 @@ const Logout = styled.div`
   justify-content: center;
   display: -webkit-flex;
   padding-bottom: 3%;
+  &:hover {
+    background-color: #7ca8bd;
+    width: 100%;
+    border-radius: 3px;
+    height: 110%;
+  }
 `;
 
 export const DropdownContent: FC = () => {

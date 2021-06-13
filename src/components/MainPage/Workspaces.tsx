@@ -3,6 +3,7 @@ import styled from "styled-components";
 import LeftMenu from "../LeftMenu/LeftMenu";
 import { TopBar } from "../TopBar/TopBar";
 import { MainColor } from "../../utils/colors";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -105,7 +106,9 @@ const Workspaces: FC = () => {
             <InsideImage src="https://www.prawo.pl/gfx/prawopl/_thumbs/pl/wkdokumenty/000/414/798/1/podpis_00003_istock,nnyD62SdolTLo7bXW5mZ.jpg?v=1" />
             <WorkspaceDisplay>
               <InsideGraphic src="https://thumbs.dreamstime.com/b/kontrakt-cienka-kreskowa-ikona-zgoda-i-podpis-113766916.jpg" />
-              <InsideHeader>Client Contract</InsideHeader>
+              <Link to="/workspace">
+                <InsideHeader>Client Contract</InsideHeader>
+              </Link>
             </WorkspaceDisplay>
             <BottomText>
               <SmallImage src=".\icons\icons\cog.svg" />

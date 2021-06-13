@@ -6,6 +6,7 @@ import { Colors } from "../../styleHelpers/styledHelpers/Colors";
 import { ExpandedMenu } from "./ExpandedMenu";
 import { RightIcons } from "./RightIcons";
 import { Dropdown } from "./Dropdown";
+import { Link } from "react-router-dom";
 
 const InnerWrapper = styled.div`
   display: flex;
@@ -55,6 +56,7 @@ export const TopBar: FC = () => {
       <InnerWrapper>
         <InsideWrapper>
           <ImageFirst src="./icons/icons/logo.png" />
+
           <Dropdown />
         </InsideWrapper>
         <InputWrapper>

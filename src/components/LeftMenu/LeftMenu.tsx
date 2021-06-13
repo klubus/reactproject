@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import administration from "../../icons/icons/administration.svg";
 import { MainColor } from "../../utils/colors";
+import { Link } from "react-router-dom";
 const Wrapper = styled.div`
   width: 25%;
   display: flex;
@@ -57,6 +58,13 @@ const UserInformationPublicationsContainer = styled.div`
   justify-content: space-between;
   padding-left: 20px;
   padding-right: 20px;
+  &:hover {
+    background-color: #7ca8bd;
+    width: 83%;
+    border-radius: 3px;
+    height: 110%;
+    cursor: pointer;
+  }
 `;
 
 const UserInformationDetailsContainer = styled.div`
@@ -83,6 +91,13 @@ const UserInformationName = styled.div`
 
 const UserTextPublications = styled.div`
   display: flex;
+  &:hover {
+    background-color: #7ca8bd;
+    width: 83%;
+    border-radius: 3px;
+    height: 110%;
+    cursor: pointer;
+  }
 `;
 
 const UseriInformationInsideImage = styled.img`
@@ -109,6 +124,10 @@ const ImagesBottom = styled.img`
 const UserInformationPublicationsLabel = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const UserTextPublicationsName = styled.a`
+  text-decoration: none;
 `;
 
 const LeftMenu: FC = () => {
@@ -157,7 +176,9 @@ const LeftMenu: FC = () => {
           </UserTextPublications>
           <UserTextPublications>
             <ImagesBottom src="../../icons/icons/entities.svg" />
-            <div>Entities</div>
+            <Link to="/entities">
+              <UserTextPublicationsName>Entities</UserTextPublicationsName>
+            </Link>
           </UserTextPublications>
         </UserInformationExtras>
       </UserInformation>
