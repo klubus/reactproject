@@ -1,6 +1,8 @@
 import { EDEADLK } from "node:constants";
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { IDropdownContent } from "./Dropdown";
 
 const DropdownContainer = styled.div`
   position: absolute;
@@ -8,7 +10,7 @@ const DropdownContainer = styled.div`
   left: 17px;
   background-color: white;
   border: 1px solid grey;
-  width: 313%;
+  width: 220%;
   border-radius: 4px;
   border: 2px grey solid;
 `;
@@ -29,9 +31,7 @@ const LabelWrapper = styled.div`
   margin-right: 15px;
   &:hover {
     background-color: #7ca8bd;
-    width: 80%;
     border-radius: 3px;
-    height: 110%;
   }
 `;
 
@@ -72,7 +72,22 @@ const Logout = styled.div`
   }
 `;
 
-export const DropdownContent: FC = () => {
+const NavigationWrapper = styled.div`
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+export const DropdownContent = ({
+  labels,
+  setDropdownChoice,
+  closeDropdown,
+}: {
+  labels: IDropdownContent[];
+  setDropdownChoice: Dispatch<SetStateAction<IDropdownContent>>;
+  closeDropdown: () => void;
+}) => {
+  const history = useHistory();
   return (
     <DropdownContainer>
       <InputWrapper>
@@ -80,47 +95,62 @@ export const DropdownContent: FC = () => {
       </InputWrapper>
 
       <Title>Platform</Title>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/house.svg" />
-        <LabelText>Home</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/publications.png" />
-        <LabelText>Publications</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/people.png" />
-        <LabelText>People</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/entities.png" />
-        <LabelText>Entities</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/administration.png" />
-        <LabelText>Administration</LabelText>
-      </LabelWrapper>
-      <Title>Workspaces</Title>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/house.svg" />
-        <LabelText>Client contract</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/publications.png" />
-        <LabelText>Supplier contract</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/people.png" />
-        <LabelText>Corporate</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/entities.png" />
-        <LabelText>Group Norms</LabelText>
-      </LabelWrapper>
-      <LabelWrapper>
-        <LabelIcon src="./icons/icons/administration.png" />
-        <LabelText>Real estate contracts</LabelText>
-      </LabelWrapper>
+      <NavigationWrapper>
+        {labels.map((label, index) => (
+          <LabelWrapper
+            key={index}
+            onClick={() => {
+              setDropdownChoice(label);
+              closeDropdown();
+              history.push(label.path ?? "");
+            }}
+          >
+            <LabelIcon src={label.src} />
+            <LabelText>{label.label}</LabelText>
+          </LabelWrapper>
+        ))}
+        {/* <LabelWrapper>
+          <LabelIcon src="./icons/icons/house.svg" />
+          <LabelText>Home</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/publications.png" />
+          <LabelText>Publications</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/people.png" />
+          <LabelText>People</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/entities.png" />
+          <LabelText>Entities</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/administration.png" />
+          <LabelText>Administration</LabelText>
+        </LabelWrapper>
+        <Title>Workspaces</Title>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/house.svg" />
+          <LabelText>Client contract</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/publications.png" />
+          <LabelText>Supplier contract</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/people.png" />
+          <LabelText>Corporate</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/entities.png" />
+          <LabelText>Group Norms</LabelText>
+        </LabelWrapper>
+        <LabelWrapper>
+          <LabelIcon src="./icons/icons/administration.png" />
+          <LabelText>Real estate contracts</LabelText>
+        </LabelWrapper> */}
+      </NavigationWrapper>
       <AccountDiv>
         <Title>Account</Title>
         <LabelWrapper>

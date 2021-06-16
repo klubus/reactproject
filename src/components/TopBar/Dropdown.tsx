@@ -1,7 +1,9 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import useDropdown from "react-dropdown-hook";
 import styled from "styled-components";
 import { DropdownContent } from "./DropdownContent";
+import DropdownIcon from "../../icons/icons/dropdown.svg";
+import { useState } from "react";
 
 const ImageFirst = styled.img`
   weight: 10px;
@@ -27,15 +29,63 @@ const Text = styled.div`
   font-family: sans-serif;
 `;
 
+const DropdownIcon2 = styled.img`
+  font-size: 1.25rem;
+  width: 24px;
+  height: 20px;
+`;
+
+export interface IDropdownContent {
+  src: string;
+  label: string;
+  path?: string;
+  children?: ReactNode;
+}
+
+const labels: IDropdownContent[] = [
+  {
+    src: "./icons/icons/house.svg",
+    label: "Home",
+    path: "/",
+  },
+  {
+    src: "./icons/icons/publications.png",
+    label: "Publications",
+  },
+  {
+    src: "./icons/icons/people.png",
+    label: "People",
+  },
+  {
+    src: "./icons/icons/entities.png",
+    label: "Entities",
+    path: "/entities",
+  },
+  {
+    src: "./icons/icons/administration.png",
+    label: "Administration",
+  },
+];
+
 export const Dropdown: FC = () => {
   const [wrapperRef, dropdownOpen, toggleDropdown, closeDropdown] =
     useDropdown();
+  const [dropdownChoice, setDropdownChoice] = useState(labels[0]);
   return (
     <>
       <Wrapper ref={wrapperRef}>
-        <ImageFirst src="./icons/icons/house.png" />
-        <Text onClick={toggleDropdown}>Home</Text>
-        {dropdownOpen && <DropdownContent />}
+        <ImageFirst src={dropdownChoice.src} />
+        <div style={{ display: "flex" }} onClick={toggleDropdown}>
+          <Text>{dropdownChoice.label}</Text>
+          <DropdownIcon2 src={DropdownIcon} />
+        </div>
+        {dropdownOpen && (
+          <DropdownContent
+            labels={labels}
+            setDropdownChoice={setDropdownChoice}
+            closeDropdown={closeDropdown}
+          />
+        )}
       </Wrapper>
       {/* <div onClick={closeDropdown}>Close menu after this click</div> */}
     </>
