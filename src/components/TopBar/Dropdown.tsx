@@ -65,6 +65,22 @@ const labels: IDropdownContent[] = [
     src: "./icons/icons/administration.png",
     label: "Administration",
   },
+  {
+    src: "./icons/icons/administration.png",
+    label: "Client contract",
+  },
+  {
+    src: "./icons/icons/administration.png",
+    label: "Supplier contract",
+  },
+  {
+    src: "./icons/icons/administration.png",
+    label: "Corporate",
+  },
+  {
+    src: "./icons/icons/administration.png",
+    label: "Group Norms",
+  },
 ];
 
 export const Dropdown: FC = () => {

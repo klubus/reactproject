@@ -38,9 +38,7 @@ const Mosaic = styled.div`
   align-items: center;
   &:hover {
     background-color: #7ca8bd;
-    width: 83%;
     border-radius: 3px;
-    height: 110%;
     cursor: pointer;
 `;
 
@@ -54,9 +52,7 @@ const List = styled.div`
 
   &:hover {
     background-color: #7ca8bd;
-    width: 83%;
     border-radius: 3px;
-    height: 110%;
     cursor: pointer;
 `;
 
@@ -64,7 +60,7 @@ const InsideImage = styled.img`
   padding: 2px;
 `;
 
-const Title: FC = () => {
+const Title = ({ setIsMosaic }: any) => {
   return (
     <Wrapper>
       <EntitiesDiv>
@@ -72,11 +68,11 @@ const Title: FC = () => {
         <EntitiesImage src="./icons/icons/settings.svg" />
       </EntitiesDiv>
       <RightView>
-        <Mosaic>
+        <Mosaic onClick={() => setIsMosaic(true)}>
           <InsideImage src="./icons/icons/cog.svg" />
           Mosaic
         </Mosaic>
-        <List>
+        <List onClick={() => setIsMosaic(false)}>
           <InsideImage src="./icons/icons/cog.svg" />
           List
         </List>
