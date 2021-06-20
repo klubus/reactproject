@@ -28,7 +28,7 @@ export interface IEntity {
 const entitiesList: IEntity[] = [
   {
     src: "https://wpcdn.us-east-1.vip.tn-cloud.net/www.metropolismag.com/content/uploads/2021/01/600x600.png",
-    header: "header",
+    header: "sdasd",
     description: "description",
   },
   {

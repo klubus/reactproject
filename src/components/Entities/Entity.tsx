@@ -18,9 +18,6 @@ const Item = styled.div<{ isMosaic: boolean }>`
       : `
   width: 100%;
   margin: 10px 0px;
-
-
-
 `}
   display: -webkit-flex;
   display: flex;
@@ -41,6 +38,29 @@ const Image = styled.img`
   padding-left: 2%;
 `;
 
+const TextHeader = styled.div<{ isMosaic: boolean }>`
+  ${({ isMosaic }) =>
+    isMosaic
+      ? css`
+          width: 24%;
+          margin: 5px;
+        `
+      : `
+width: 100%;
+margin: 10px 0px;
+`}
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgb(91 94 106 / 30%);
+  height: 90px;
+`;
+
 const Entity = ({ ent, isMosaic }: { ent: IEntity; isMosaic: boolean }) => {
   return (
     <>
@@ -48,6 +68,7 @@ const Entity = ({ ent, isMosaic }: { ent: IEntity; isMosaic: boolean }) => {
         <Image src={ent.src} />
         {ent.header}
       </Item>
+      <TextHeader isMosaic={isMosaic}>ss</TextHeader>
     </>
   );
 };
