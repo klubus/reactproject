@@ -1,5 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
+import { IWorkList } from ".";
 
 const Wrapper = styled.div`
   margin-top: 10px;
@@ -51,27 +52,30 @@ const Lorem = styled.div`
   color: gray;
 `;
 
-const ResumeWorkList: FC = () => {
+const ResumeWorkList = ({ workList }: { workList: IWorkList[] }) => {
+  console.log(workList);
   return (
     <Wrapper>
-      <Workspace>
-        <WorkspaceDisplay>
-          <InsideHeader>Contract #145</InsideHeader>
-        </WorkspaceDisplay>
-        <Lorem>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio
-          voluptate tempore nisi tenetur atque mollitia, non dicta ipsa
-          molestiae. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          Ab, ipsam.
-        </Lorem>
-        <BottomText>
-          <SmallImage src=".\icons\icons\cog.svg" />
-          <LabelInfo>Subsid. corp.</LabelInfo>
-          <SmallImage src=".\icons\icons\cog.svg" />
-          <LabelInfo>Corporate</LabelInfo>
-          Updated 3 days ago by John Dee
-        </BottomText>
-      </Workspace>
+      {workList.map((work) => (
+        <Workspace>
+          <WorkspaceDisplay>
+            <InsideHeader>{work.name}</InsideHeader>
+          </WorkspaceDisplay>
+          <Lorem>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio
+            voluptate tempore nisi tenetur atque mollitia, non dicta ipsa
+            molestiae. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Ab, ipsam.
+          </Lorem>
+          <BottomText>
+            <SmallImage src=".\icons\icons\cog.svg" />
+            <LabelInfo>Subsid. corp.</LabelInfo>
+            <SmallImage src=".\icons\icons\cog.svg" />
+            <LabelInfo>Corporate</LabelInfo>
+            Updated 3 days ago by John Dee
+          </BottomText>
+        </Workspace>
+      ))}
     </Wrapper>
   );
 };

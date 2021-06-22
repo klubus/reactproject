@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -35,12 +35,22 @@ const Image = styled.img`
   left: 85%;
 `;
 
-const ResumeWorkHeader: FC = () => {
+const ResumeWorkHeader = ({
+  input,
+  setInput,
+}: {
+  input: string;
+  setInput: Dispatch<SetStateAction<string>>;
+}) => {
   return (
     <Wrapper>
       <Header>Resume your work</Header>
       <FilterInput>
-        <input type="text" />
+        <input
+          type="text"
+          value={input}
+          onChange={(e: any) => setInput(e.target.value)}
+        />
         <img src="./icons/icons/search.png" />
       </FilterInput>
       <Image src="./icons/icons/privacy.png" />
