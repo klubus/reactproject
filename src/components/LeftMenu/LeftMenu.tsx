@@ -19,6 +19,12 @@ const UserInformationDetailsPhoto = styled.img<imgProps>`
   border-radius: 50%;
 `;
 
+const FlexPhoto = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+
 const UserInformationDetails = styled.div`
   background: white;
   border-bottom: 1px solid #d3cbcb;
@@ -136,8 +142,13 @@ const LeftMenu: FC = () => {
       <UserInformation>
         <UserInformationDetails>
           <UserInformationDetailsContainer>
-            <UserInformationDetailsPhoto src="https://i.pinimg.com/236x/47/8b/db/478bdb697c39b3047817a0687b73d5d2--corporate-portrait-business-portrait.jpg" />
-            <UserInformationName>Humberta Swift</UserInformationName>
+            <Link to="/profile">
+              <FlexPhoto>
+                <UserInformationDetailsPhoto src="https://i.pinimg.com/236x/47/8b/db/478bdb697c39b3047817a0687b73d5d2--corporate-portrait-business-portrait.jpg" />
+                <UserInformationName>Humberta Swift</UserInformationName>
+              </FlexPhoto>
+            </Link>
+
             <UserInformationJobTitle>
               Job Title &bull; Company
             </UserInformationJobTitle>

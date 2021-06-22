@@ -55,8 +55,9 @@ export const TopBar: FC = () => {
     <Wrapper>
       <InnerWrapper>
         <InsideWrapper>
-          <ImageFirst src="./icons/icons/logo.png" />
-
+          <Link to="/">
+            <ImageFirst src="./icons/icons/logo.png" />
+          </Link>
           <Dropdown />
         </InsideWrapper>
         <InputWrapper>
